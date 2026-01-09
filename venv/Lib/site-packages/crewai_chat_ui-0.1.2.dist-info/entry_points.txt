@@ -1,0 +1,2 @@
+[console_scripts]
+crewai-chat-ui = crewai_chat_ui.server:main
