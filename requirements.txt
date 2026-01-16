@@ -1,0 +1,8 @@
+crewai
+crewai-tools
+openai
+python-dotenv
+gradio
+requests
+html2text
+sec-api
