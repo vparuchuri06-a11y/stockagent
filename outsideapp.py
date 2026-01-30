@@ -1,8 +1,8 @@
 import gradio as gr
 from stock_agent import run_stock_agent
 import os
-from dotenv import load_dotenv
-load_dotenv()
+#from dotenv import load_dotenv
+#load_dotenv()
 
 port = int(os.environ.get("PORT", 7860))
 
@@ -33,9 +33,13 @@ demo = gr.Interface(
 )
 
 if __name__ == "__main__":
+    demo.queue()  # REQUIRED for async startup
+
     demo.launch(
         server_name="0.0.0.0",
-        server_port=port,
+        server_port=int(os.environ["PORT"]),
         share=False,
-        debug=False
+        debug=False,
+        show_error=True,
+        prevent_thread_lock=True  # ⭐ THIS IS THE FIX
     )
