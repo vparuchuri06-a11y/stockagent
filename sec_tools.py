@@ -4,8 +4,11 @@ import html2text
 import re
 from crewai.tools import tool
 from sec_api import QueryApi
+from dotenv import load_dotenv
 
-SEC_API_KEY = os.getenv("SEC_API_API_KEY")
+load_dotenv()
+
+SEC_API_KEY = os.getenv("SEC_API_KEY")
 
 
 def fetch_latest_filing(ticker: str, form_type: str) -> str:

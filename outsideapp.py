@@ -1,5 +1,10 @@
 import gradio as gr
 from stock_agent import run_stock_agent
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+port = int(os.environ.get("PORT", 7860))
 
 def analyze(company):
     company = company.strip().upper()
@@ -30,5 +35,5 @@ demo = gr.Interface(
 if __name__ == "__main__":
     demo.launch(
         server_name="0.0.0.0",
-        server_port=7860
+        server_port=port
     )

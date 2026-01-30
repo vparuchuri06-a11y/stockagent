@@ -6,3 +6,5 @@ gradio
 requests
 html2text
 sec-api
+liteLLM
+google-cloud-aiplatform

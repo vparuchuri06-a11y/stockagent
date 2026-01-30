@@ -21,7 +21,7 @@ def calculator(expression: str) -> float:
     }
 
     if not re.match(r'^[0-9+\-*/().% ]+$', expression):
-        raise ValueError("Invalid characters in expression")
+        return "Invalid mathematical expression."
 
     tree = ast.parse(expression, mode="eval")
 

@@ -3,19 +3,33 @@
 from crewai import Agent, Task, Crew, LLM
 from calculator_tool import calculator
 from sec_tools import sec_10k_search, sec_10q_search
+from google.cloud import aiplatform
+from langchain_google_vertexai import ChatVertexAI
+
 
 # -------------------------
 # Local LLM
 # -------------------------
-llm = LLM(
-     model="ollama/llama3.2:3b",
-     base_url="http://localhost:11434",
-     temperature=0.1
- )
+# llm = LLM(
+#      model="ollama/llama3.2:3b",
+#      base_url="http://localhost:11434",
+#      temperature=0.1
+#  )
 #llm = LLM(
 #    model="gpt-4o-mini",  # fast + cheap
 #    temperature=0.2
 #)
+#deployment process
+import os
+
+llm = ChatVertexAI(
+    model="gemini-1.5-flash",
+    temperature=0.2,
+    max_output_tokens=2048,
+    project=os.getenv("GCP_PROJECT_ID"),
+    location="us-central1"
+)
+
 
 def run_stock_agent(company: str) -> str:
     # -------------------------
