@@ -1,22 +1,15 @@
-# Use Python 3.11 (stable + Cloud Run friendly)
 FROM python:3.11-slim
 
-# Set working directory
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy project files
-COPY . .
-
-# Install Python dependencies
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Cloud Run listens on this port
-EXPOSE 7860
+COPY . .
 
-# Start the app
+ENV PYTHONUNBUFFERED=1
+ENV PORT=8080
+
+EXPOSE 8080
+
 CMD ["python", "outsideapp.py"]
